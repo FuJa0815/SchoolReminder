@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Test
+namespace SchoolReminder
 {
     public class Lesson
     {
@@ -10,9 +10,9 @@ namespace Test
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public string LessonText { get; set; }
-        public IEnumerable<LessonDetail> Teachers { get; set; }
-        public IEnumerable<LessonDetail> Rooms { get; set; }
-        public IEnumerable<LessonDetail> Subjects { get; set; }
+        public LessonDetail[] Teachers { get; set; }
+        public LessonDetail[] Rooms { get; set; }
+        public LessonDetail[] Subjects { get; set; }
         public string CellState { get; set; }
         public string StudentGroup { get; set; }
     }
