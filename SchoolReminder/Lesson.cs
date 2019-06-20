@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace SchoolReminder
 {
-    public class Lesson
+    public struct Lesson
     {
         public int ID { get; set; }
         public DateTime Start { get; set; }
@@ -15,5 +13,7 @@ namespace SchoolReminder
         public LessonDetail[] Subjects { get; set; }
         public string CellState { get; set; }
         public string StudentGroup { get; set; }
+
+        public override string ToString() => $"{ID} {StudentGroup} {Start.ToString("yyyy.MM.dd hh:mm")}-{End.ToString("hh:mm")} {string.Join(' ',Subjects)} {string.Join(' ', Rooms)} {string.Join(' ', Teachers)} {CellState} {LessonText}";
     }
 }

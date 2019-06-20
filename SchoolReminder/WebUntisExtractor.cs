@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -10,11 +10,11 @@ namespace SchoolReminder
 {
     public static class WebUntisExtractor
     {
-        public static async IAsyncEnumerable<Lesson> GetLessons(int classID = 158)
+        public static async IAsyncEnumerable<Lesson> GetLessons(DateTime date, int classID = 158)
         {
-            var json = GetFromServer(classID, DateTime.Now);
+            var json = GetFromServer(classID, date);
 
-            foreach(var p in json["data"]["result"]["data"]["elementPeriods"][classID.ToString()].ToList().AsParallel())
+            foreach (var p in json["data"]["result"]["data"]["elementPeriods"][classID.ToString()].ToList().AsParallel())
             {
                 var id = Task.Run(() => Int32.Parse(p["id"].ToString()));
                 var cellState = Task.Run(() => p["cellState"].ToString());
@@ -41,12 +41,9 @@ namespace SchoolReminder
             }
         }
 
-        private static IEnumerable<LessonDetail> Lookup(JToken p, JObject json, string type)
-        {
+        private static IEnumerable<LessonDetail> Lookup(JToken p, JObject json, string type) {
             foreach (var s in p["elements"].Where(s => s["type"].ToString() == type))
-            {
                 yield return new LessonDetail(json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["id"].ToString())["name"].ToString(), s["orgId"].ToString() == "0" ? "" : json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["orgId"].ToString())["name"].ToString());
-            }
         }
 
         private static JObject GetFromServer(int elementId, DateTime date)
