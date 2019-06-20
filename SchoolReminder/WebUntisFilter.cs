@@ -1,13 +1,10 @@
-﻿namespace SchoolReminder
-{
-    public static class WebUntisFilter
-    {
-        public static readonly string EXAM = "EXAM";
-        public static readonly string STANDARD = "STANDARD";
-        public static readonly string SUBSTITUTION = "SUBSTITUTION";
-        public static readonly string ROOMSUBSTITUTION = "ROOMSUBSTITUTION";
-        public static readonly string ADDITIONAL = "ADDITIONAL";
-        public static readonly string CANCEL = "CANCEL";
-
+﻿namespace SchoolReminder {
+    public static class WebUntisFilter {
+        public static readonly string Exam = "EXAM";
+        public static readonly string Standard = "STANDARD";
+        public static readonly string Substitution = "SUBSTITUTION";
+        public static readonly string RoomSubstitution = "ROOMSUBSTITUTION";
+        public static readonly string Additional = "ADDITIONAL";
+        public static readonly string Cancel = "CANCEL";
     }
 }
