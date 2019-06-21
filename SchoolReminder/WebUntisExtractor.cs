@@ -57,7 +57,7 @@ namespace SchoolReminder {
         private static JObject GetFromServer(int elementId, DateTime date) {
             var baseAddress =
                 new Uri(
-                    $"https://arche.webuntis.com/WebUntis/api/public/timetable/weekly/data?elementType=1&elementId={elementId}&date={date.ToString("yyyy-MM-dd")}");
+                    $"https://arche.webuntis.com/WebUntis/api/public/timetable/weekly/data?elementType=1&elementId={elementId}&date={date:yyyy-MM-dd}");
             var cookieContainer = new CookieContainer();
             using var handler = new HttpClientHandler { CookieContainer = cookieContainer };
             using var client = new HttpClient(handler) { BaseAddress = baseAddress };
