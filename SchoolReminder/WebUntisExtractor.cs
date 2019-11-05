@@ -31,20 +31,29 @@ namespace SchoolReminder {
                     Teachers = await teachers,
                     Subjects = await subjects,
                     Rooms = await rooms,
-                    StudentGroup = await studentGroup,
+                    StudentGroup = await studentGroup
                 };
             }
         }
 
-        private static IEnumerable<LessonDetail> Lookup(JToken p, JObject json, string type) => p["elements"].Where(s => s["type"].ToString() == type).AsParallel().Select(s => new LessonDetail(json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["id"].ToString())["name"].ToString(), s["orgId"].ToString() == "0" ? "" : json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["orgId"].ToString())["name"].ToString()));
+        private static IEnumerable<LessonDetail> Lookup(JToken p, JObject json, string type)
+        {
+            foreach (var s in p["elements"].Where(s => s["type"].ToString() == type))
+            {
+                yield return new LessonDetail(json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["id"].ToString())["name"].ToString(), s["orgId"].ToString() == "0" ? "" : json["data"]["result"]["data"]["elements"].First(u => u["type"].ToString() == type && u["id"].ToString() == s["orgId"].ToString())["name"].ToString());
+            }
+        }
 
-        private static JObject GetFromServer(int elementId, DateTime date) {
-            var baseAddress = new Uri($"https://arche.webuntis.com/WebUntis/api/public/timetable/weekly/data?elementType=1&elementId={elementId}&date={date:yyyy-MM-dd}");
+        private static JObject GetFromServer(int elementId, DateTime date)
+        {
+            var baseAddress = new Uri($"https://arche.webuntis.com/WebUntis/api/public/timetable/weekly/data?elementType=1&elementId={elementId}&date={date.ToString("yyyy-MM-dd")}");
             var cookieContainer = new CookieContainer();
-            using var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
-            using var client = new HttpClient(handler) { BaseAddress = baseAddress };
-            cookieContainer.Add(baseAddress, new Cookie("schoolname", "_aHRibGEtZ3JpZXNraXJjaGVu"));
-            return JObject.Parse(client.GetStringAsync(baseAddress).Result);
+            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+            using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
+            {
+                cookieContainer.Add(baseAddress, new Cookie("schoolname", "_aHRibGEtZ3JpZXNraXJjaGVu"));
+                return JObject.Parse(client.GetStringAsync(baseAddress).Result);
+            }
         }
     }
 }

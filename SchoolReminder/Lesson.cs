@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace SchoolReminder
 {
@@ -15,5 +13,8 @@ namespace SchoolReminder
         public LessonDetail[] Subjects { get; set; }
         public string CellState { get; set; }
         public string StudentGroup { get; set; }
+
+        public override string ToString() =>
+            $"{Id} {StudentGroup} {Start:yyyy.MM.dd hh:mm}-{End:hh:mm} {string.Join(' ', Subjects)} {string.Join(' ', Rooms)} {string.Join(' ', Teachers)} {CellState} {LessonText}";
     }
 }
