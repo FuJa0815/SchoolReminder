@@ -10,8 +10,8 @@ namespace SchoolReminder
             Substitution = substitution;
         }
 
-        public string Original { get; set; }
-        public string Substitution { get; set; }
+        public string Original { get; }
+        public string Substitution { get; }
 
         public override bool Equals(object obj) => obj is LessonDetail detail && Original == detail.Original && Substitution == detail.Substitution;
         public override int GetHashCode() => HashCode.Combine(Original, Substitution);
