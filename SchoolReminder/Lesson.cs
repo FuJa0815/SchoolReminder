@@ -1,4 +1,6 @@
-﻿namespace SchoolReminder {
+﻿using System;
+
+namespace SchoolReminder {
     public struct Lesson {
         public int Id { get; set; }
         public DateTime Start { get; set; }
