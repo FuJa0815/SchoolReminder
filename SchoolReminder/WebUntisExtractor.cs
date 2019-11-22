@@ -67,10 +67,12 @@ namespace SchoolReminder
                 new Uri(
                     $"https://arche.webuntis.com/WebUntis/api/public/timetable/weekly/data?elementType=1&elementId={elementId}&date={date:yyyy-MM-dd}");
             var cookieContainer = new CookieContainer();
-            using var handler = new HttpClientHandler {CookieContainer = cookieContainer};
-            using var client = new HttpClient(handler) {BaseAddress = baseAddress};
             cookieContainer.Add(baseAddress, new Cookie("schoolname", "_aHRibGEtZ3JpZXNraXJjaGVu"));
-            return JObject.Parse(client.GetStringAsync(baseAddress).Result);
+            using (var handler = new HttpClientHandler { CookieContainer = cookieContainer })
+            using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
+            {
+                return JObject.Parse(client.GetStringAsync(baseAddress).Result);
+            }
         }
     }
 }
