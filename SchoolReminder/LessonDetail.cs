@@ -6,26 +6,18 @@ namespace SchoolReminder
     {
         public LessonDetail(string original, string substitution = "")
         {
-            Original = original;
+            Original     = original;
             Substitution = substitution;
         }
 
-        public string Original { get; }
+        public string Original     { get; }
         public string Substitution { get; }
 
-        public override bool Equals(object obj)
-        {
-            return obj is LessonDetail detail && Original == detail.Original && Substitution == detail.Substitution;
-        }
+        public override bool Equals(object obj) => obj is LessonDetail detail && Original == detail.Original &&
+                                                   Substitution                           == detail.Substitution;
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Original, Substitution);
-        }
+        public override int GetHashCode() => HashCode.Combine(Original, Substitution);
 
-        public override string ToString()
-        {
-            return $"{Original} {Substitution}".TrimEnd();
-        }
+        public override string ToString() => $"{Original} {Substitution}".TrimEnd();
     }
 }

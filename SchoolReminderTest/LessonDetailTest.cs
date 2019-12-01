@@ -21,13 +21,13 @@ namespace SchoolReminderTest
         [TestMethod]
         public void TestToString3()
         {
-            Assert.AreEqual("AM D", new LessonDetail( "AM", "D").ToString());
+            Assert.AreEqual("AM D", new LessonDetail("AM", "D").ToString());
         }
 
         [TestMethod]
         public void TestToString4()
         {
-            Assert.AreEqual("AM", new LessonDetail ( "AM").ToString());
+            Assert.AreEqual("AM", new LessonDetail("AM").ToString());
         }
 
         [TestMethod]
