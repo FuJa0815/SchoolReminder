@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace SchoolReminder
+namespace SchoolReminder.Extractor
 {
     public static class WebUntisExtractor
     {
