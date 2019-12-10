@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SchoolReminder.Extractor
+namespace SchoolReminder.Services
 {
     public struct Lesson
     {
