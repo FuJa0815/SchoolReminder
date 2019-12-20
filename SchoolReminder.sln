@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolReminder.Extractor", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolReminderTest", "SchoolReminderTest\SchoolReminderTest.csproj", "{381C35CE-6CD6-4BC1-B998-6EF20BF3FB46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolReminder.Main", "SchoolReminder.Main\SchoolReminder.Main.csproj", "{10704076-A108-47A5-A07D-BC02F2B703D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{381C35CE-6CD6-4BC1-B998-6EF20BF3FB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381C35CE-6CD6-4BC1-B998-6EF20BF3FB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{381C35CE-6CD6-4BC1-B998-6EF20BF3FB46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10704076-A108-47A5-A07D-BC02F2B703D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10704076-A108-47A5-A07D-BC02F2B703D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10704076-A108-47A5-A07D-BC02F2B703D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10704076-A108-47A5-A07D-BC02F2B703D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

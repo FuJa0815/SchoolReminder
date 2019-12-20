@@ -10,15 +10,14 @@ namespace SchoolReminder.Extractor
 {
     public static class WebUntisExtractor
     {
-        public static async IAsyncEnumerable<Lesson> GetLessons(int classId = 192)
+        public static async IAsyncEnumerable<Lesson> GetLessons(int classId, DateTime week)
         {
-            var json = GetFromServer(classId, DateTime.Now);
+            var json = GetFromServer(classId, week);
 
             foreach (var p in json["data"]["result"]["data"]["elementPeriods"][classId.ToString()].ToList()
                                                                                                   .AsParallel())
             {
                 var id        = Task.Run(() => int.Parse(p["id"].ToString()));
-                var cellState = Task.Run(() => p["cellState"].ToString());
                 var start = Task.Run(() => new DateTime(int.Parse(p["date"].ToString().Substring(0, 4)),
                                                         int.Parse(p["date"].ToString().Substring(4, 2)),
                                                         int.Parse(p["date"].ToString().Substring(6, 2)),
@@ -42,7 +41,6 @@ namespace SchoolReminder.Extractor
                 yield return new Lesson
                 {
                     Id           = await id,
-                    CellState    = await cellState,
                     Start        = await start,
                     End          = await end,
                     LessonText   = await lessonText,
